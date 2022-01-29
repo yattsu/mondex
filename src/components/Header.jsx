@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { Flex } from '@chakra-ui/react';
 
 import { Searchbar } from './Searchbar';

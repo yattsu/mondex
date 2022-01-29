@@ -7,11 +7,14 @@ export const Catalog = () => {
     <Flex
       bg='gray.100'
       w={['100%', '80%', '60%', '50%']}
-      px='2'
+      p='5'
       border='1px solid'
       borderColor='gray.200'
       rounded='md'
       justify='center'
+      wrap='wrap'
+      gap='3'
+      my='16'
     >
       <Outlet />
     </Flex>
