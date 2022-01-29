@@ -1,5 +1,17 @@
+import { Flex } from '@chakra-ui/react';
+
+import { Searchbar } from './Searchbar';
+
 export const Header = () => {
   return(
-  'test'
+    <Flex
+      w='full'
+      h='full'
+      left='0'
+      top='0'
+      direction='column'
+    >
+      <Searchbar />
+    </Flex>
   )
 }
