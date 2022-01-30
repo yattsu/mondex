@@ -43,7 +43,7 @@ export const PokemonInfo = () => {
 
   return(
     <Flex
-      w={['100%', '80%', '60%', '50%']}
+      w='full'
       direction={['column', 'row', 'row', 'row']}
       bg='gray.50'
       color='gray.700'

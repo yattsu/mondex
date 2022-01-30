@@ -9,8 +9,7 @@ export const Catalog = () => {
     <Flex
       justify='center'
       direction='column'
-      w={['100%', '80%', '60%', '50%']}
-        my='16'
+      w='full'
     >
       <Flex
         justify={pageNumber == 1 ? 'flex-end' : 'space-between'}
