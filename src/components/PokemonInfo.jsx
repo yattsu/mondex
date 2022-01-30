@@ -47,6 +47,7 @@ export const PokemonInfo = () => {
       direction={['column', 'row', 'row', 'row']}
       bg='gray.50'
       color='gray.700'
+      rounded='lg'
     >
       <Image src={data.sprites.other['official-artwork'].front_default}
         w={['lg', 'md', 'md', 'lg']}

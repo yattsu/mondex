@@ -20,21 +20,41 @@ export const PokemonBox = ({data}) => {
         _hover={{
           shadow: 'md'
         }}
+        position='relative'
         cursor='pointer'
         direction='column'
-        bg='gray.200'
         justify='center'
         alignItems='center'
-        border='1px solid'
         borderColor='gray.300'
-        rounded='md'
+        bg='gray.50'
+        shadow='sm'
+        rounded='lg'
+        pt='5'
+        px='5'
+        pb='2'
       >
         <Skeleton fadeDuration={2} isLoaded={pokemonData}>
+          <Text
+            position='absolute'
+            bg='yellow.300'
+            top='0'
+            right='0'
+            roundedTopRight='lg'
+            roundedBottomLeft='lg'
+            fontWeight='bold'
+            color='gray.700'
+            fontSize='sm'
+            px='2'
+          >
+            #{pokemonData?.id}
+          </Text>
           <Image w='24' h='24' src={pokemonData?.sprites.front_default} />
         </Skeleton>
         <SkeletonText fadeDuration={2} noOfLines={2} isLoaded={pokemonData}>
           <Text
             textAlign='center'   
+            fontWeight='bold'
+            color='gray.500'
           >
             {pokemonData ?
               pokemonData.name[0].toUpperCase() + pokemonData.name.slice(1)
