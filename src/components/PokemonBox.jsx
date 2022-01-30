@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Flex, Image, Text } from '@chakra-ui/react';
+import { Flex, Image, Text, Skeleton, SkeletonText } from '@chakra-ui/react';
 
 import { getPokemonData } from '../api';
 
@@ -14,12 +14,8 @@ export const PokemonBox = ({data}) => {
     })()
   }, []);
 
-  if(!pokemonData) {
-    return 'loading'
-  }
-
   return(
-    <Link to={'/pokemon/' + pokemonData.id}>
+    <Link to={'/pokemon/' + pokemonData?.id}>
       <Flex
         _hover={{
           shadow: 'md'
@@ -33,12 +29,19 @@ export const PokemonBox = ({data}) => {
         borderColor='gray.300'
         rounded='md'
       >
-        <Image src={pokemonData.sprites.front_default} />
-        <Text
-          textAlign='center'   
-        >
-          {pokemonData.name[0].toUpperCase() + pokemonData.name.slice(1)}
-        </Text>
+        <Skeleton fadeDuration={2} isLoaded={pokemonData}>
+          <Image w='24' h='24' src={pokemonData?.sprites.front_default} />
+        </Skeleton>
+        <SkeletonText fadeDuration={2} noOfLines={2} isLoaded={pokemonData}>
+          <Text
+            textAlign='center'   
+          >
+            {pokemonData ?
+              pokemonData.name[0].toUpperCase() + pokemonData.name.slice(1)
+                : 'loading'
+            }
+          </Text>
+        </SkeletonText>
       </Flex>
     </Link>
   )

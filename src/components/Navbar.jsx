@@ -11,7 +11,7 @@ export const Navbar = () => {
       fontSize='xl'      
       color='gray.50'
     >
-      <Link to='/catalog/pokemons'>Pokemons</Link>
+      <Link to='/catalog/pokemons/1'>Pokemons</Link>
 
     </Flex>    
   )
