@@ -1,11 +1,27 @@
-import { Flex, Input, Button } from '@chakra-ui/react';
+import { useState, useEffect } from 'react';
+import { getAllPokemons } from '../api';
+import { Link } from 'react-router-dom';
+import { Flex, Input, Button, Text } from '@chakra-ui/react';
 import { Search2Icon } from '@chakra-ui/icons';
 
 export const Searchbar = () => {
+  const [query, setQuery] = useState('');
+  const [pokemons, setPokemons] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      setPokemons(await getAllPokemons())
+    })() 
+  }, [])
+
+  const handleChange = (e) => {
+    setQuery(e.target.value)
+  }
+
   return(
     <Flex
       w={['90%', '80%', '60%', '50%']}
-      direction='row'
+      direction='column'
       justify='center'
       alignItems='center'
     >
@@ -21,15 +37,39 @@ export const Searchbar = () => {
         shadow='xl'
         rounded='full'
         p='7'
+        onChange={handleChange}
       />
-      <Button
-        rounded='full'
-        p='7'
-        mx='2'
-        bg='yellow.400'
+        {query.length > 0 ?
+      <Flex
+        position='relative'
+        direction='column'
+        zIndex='10'
+        bg='white'
+        p='2'
+        w='full'
+        rounded='md'
+        maxH='400'
+        overflowY='scroll'
+        mt='2'
       >
-        {<Search2Icon />}
-      </Button>
+        {
+          pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(query.toLowerCase())).map(pokemon => (
+              <Link to={'pokemon/' + pokemon.url.split('/')[6]}>
+                <Text
+                  rounded='md'
+                  p='2'
+                  _hover={{
+                    bg: 'gray.100',
+                    fontWeight: 'bold'
+                  }} 
+                >
+                {pokemon.name}
+                </Text>
+              </Link>
+            ))
+        }
+      </Flex>
+          : null}
     </Flex>
   )
 }

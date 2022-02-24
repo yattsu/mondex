@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 import { Flex, Image, Text, Skeleton, SkeletonText } from '@chakra-ui/react';
 
-import { getPokemonData } from '../api';
+import { getPokemonDataById } from '../api';
 
-export const PokemonBox = ({data}) => {
+export const PokemonBox = ({id}) => {
   const [pokemonData, setPokemonData] = useState(null);
 
   useEffect(() => {
     (async () => {
-      setPokemonData(await getPokemonData(data.url));
+      setPokemonData(await getPokemonDataById(id));
     })()
   }, []);
 
